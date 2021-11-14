@@ -1,11 +1,15 @@
 import express from "express";
 import morgan from 'morgan'
 import router from './routes/index.js'
-
-
 let app = express()
 
 const PORT = process.env.PORT || 3001
+
+import mongoose from 'mongoose';
+mongoose.connect('mongodb://localhost/workout', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(morgan('dev'))
 app.use(express.static('public'))
