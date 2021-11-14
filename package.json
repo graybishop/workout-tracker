@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/graybishop/workout-tracker/issues"
   },
-  "homepage": "https://github.com/graybishop/workout-tracker#readme"
+  "homepage": "https://github.com/graybishop/workout-tracker#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^8.2.0"
+  },
+  "type": "module"
 }
