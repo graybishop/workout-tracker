@@ -3,12 +3,10 @@ import { Workout } from "../../models/index.js";
 const router = express.Router()
 
 router.get('/workouts', async (req, res) =>{
-  let workouts
-  workouts = await Workout.aggregate([
+  let workouts = await Workout.aggregate([
     {$match:{}},
     {$addFields: {totalDuration: {$sum: '$exercises.duration'}}}
   ])
-  console.log(workouts)
   res.json(workouts)
 })
 
@@ -24,8 +22,12 @@ router.put('/workouts/:id', async (req, res) =>{
   res.json(result)
 })
 
-router.get('/workouts/range', (req, res) =>{
-  res.send('got workouts in range')
+router.get('/workouts/range', async (req, res) =>{
+  let workouts = await Workout.aggregate([
+    {$match:{}},
+    {$addFields: {totalDuration: {$sum: '$exercises.duration'}}}
+  ]).sort('-date').limit(7)
+  res.json(workouts)
 })
 
 
