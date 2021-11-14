@@ -10,11 +10,14 @@ router.get('/workouts', async (req, res) =>{
 
 router.post('/workouts', (req, res) =>{
   const newWorkout = new Workout(req.body)
+  newWorkout.save()
   res.json(newWorkout)
 })
 
-router.put('/workouts/:id', (req, res) =>{
-  res.send(`put workout at id ${req.params.id}`)
+router.put('/workouts/:id', async (req, res) =>{
+  console.log(await Workout.findOne({_id: req.params.id}))
+  let result = await Workout.updateOne({_id: req.params.id}, {$push: {exercises: req.body}})
+  res.json(result)
 })
 
 router.get('/workouts/range', (req, res) =>{
