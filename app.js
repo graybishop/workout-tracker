@@ -6,7 +6,7 @@ let app = express()
 const PORT = process.env.PORT || 3001
 
 import mongoose from 'mongoose';
-mongoose.connect('mongodb://localhost/workout', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
