@@ -4,7 +4,11 @@ const router = express.Router()
 
 router.get('/workouts', async (req, res) =>{
   let workouts
-  workouts = await Workout.find({})
+  workouts = await Workout.aggregate([
+    {$match:{}},
+    {$addFields: {totalDuration: {$sum: '$exercises.duration'}}}
+  ])
+  console.log(workouts)
   res.json(workouts)
 })
 
