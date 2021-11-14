@@ -1,9 +1,8 @@
-import { connect } from 'mongoose';
-import { Workout } from '../models';
+import mongoose from 'mongoose';
+import { Workout } from '../models/index.js';
 
-connect('mongodb://localhost/workout', {
+mongoose.connect('mongodb://localhost/workout', {
   useNewUrlParser: true,
-  useFindAndModify: false,
   useUnifiedTopology: true,
 });
 
@@ -128,7 +127,7 @@ const workoutSeed = [
 Workout.deleteMany({})
   .then(() => Workout.collection.insertMany(workoutSeed))
   .then((data) => {
-    console.log(data.result.n + ' records inserted!');
+    console.log(data.insertedCount + ' records inserted!');
     process.exit(0);
   })
   .catch((err) => {

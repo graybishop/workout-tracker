@@ -1,3 +1,3 @@
-import Workout from './workout.js'
+import {Workout} from './workout.js'
 
 export {Workout}
