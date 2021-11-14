@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const workoutSchema = new Schema({
-  day: Date,
+  day: { type: Date, default: Date.now },
   exercises:[{
     type: {type:String},
     name: String,
